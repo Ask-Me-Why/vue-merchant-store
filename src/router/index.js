@@ -90,6 +90,7 @@ const beforeEach = (toRoute, fromRoute, next) => {
 	
 	if (_to == '/login' && user.auth != 'none') {
 		next({
+			replace: true,
 			path: '/'
 		});
 	} else {
@@ -97,6 +98,7 @@ const beforeEach = (toRoute, fromRoute, next) => {
 			refreshTitle('登录');
 			next({
 				path: '/login',
+				replace: true,
 				query: { redirect: toRoute.fullPath }
 			});
 		} else {
