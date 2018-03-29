@@ -391,7 +391,7 @@ export default {
 			// this.rootMain.loader(true);
 			let option = {};
 			option['order_code'] = this.member.order_code || "";
-			option['amount'] = this.allPrice;
+			option['amount'] = this.needPayPrice;
 			option['discount'] = this.realDiscountPrice;
 			option['goods_list'] = this.cartList.reduce((sum,val)=>{
 				let cur = {
