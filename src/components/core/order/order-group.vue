@@ -195,7 +195,7 @@
 					</div>
 					<div class="og-ofooter">
 						<div class="og-otext">共{{o.good_info.length}}件商品</div>
-						<div class="og-otext large">合计:
+						<div class="og-otext large">需付:
 							<span>￥{{o.my_total}}</span>
 						</div>
 					</div>
@@ -218,6 +218,7 @@
 	</ask-scroll>
 </template>
 <script>
+import { BigNumber } from 'bignumber.js';
 import { Order } from '@/services';
 import { twoFloat, askDialogConfirm, askDialogToast } from '@/utils';
 export default {
@@ -267,10 +268,13 @@ export default {
 						let total = 0;
 						if (index.good_info.length > 0) {
 							total = index.good_info.reduce((sum, val) => {
-								return sum + Number(val.count) * Number(twoFloat(val.price));
+								return (sum*100 + val.count * val.price * 100)/100;
 							}, 0);
 						}
-						index['my_total'] = twoFloat(total);
+						let _realTotal = new BigNumber(total);
+						
+						index['my_total'] = _realTotal.minus(index.yh).toFixed(2);
+						
 						_o.push(index);
 					})
 					this.orders = [...this.orders, ..._o];

@@ -17,7 +17,7 @@ FastClick.attach(document.body);
 Vue.use(JsBridge);
 Vue.config.productionTip = false;
 
-// docCookies.setItem('access_token', "83267613=4af88baaa31bbbca685d9aeda6692226");
+// docCookies.setItem('access_token', "83267613=a7d828256ab3e58c2254faf932404bce");
 // setTimeout(()=>{
 // 	docCookies.setItem('access_token',"365985984w845sd48wadwa");
 // },8000);

@@ -4,8 +4,8 @@ let config = {
 	getBaseUrl() {
 		let _r = this.el.getAttribute('data-api');
 		if (this.isLocal) {
-			_r = 'http://localhost:8045/api/';
-			_r = 'http://www.askmewhy.cn/web-app/api/';
+			// _r = 'http://localhost:8045/api/';
+			_r = "http://www.askmewhy.cn/web-app/api/"
 			// _r = 'http://192.168.1.107:8045/api/';
 			// _r = 'http://testmob.to-ok.com.cn/page/web-app/api';
 		}

@@ -161,6 +161,7 @@
 	</div>
 </template>
 <script>
+import { BigNumber } from 'bignumber.js';
 import {    askDialogConfirm, 
 			merge,
 			askDialogToast,
@@ -227,7 +228,10 @@ export default {
 			return amountFormat(twoFloat(p));
 		},
 		needPayPrice(){
-			return amountFormat(twoFloat((this.allPrice*100 - this.realDiscountPrice*100)/100));
+			let _allPrice = new BigNumber(this.allPrice);
+			let _dPrice = _allPrice.minus(this.realDiscountPrice);
+
+			return _dPrice.toFixed(2);
 		},
 		orderData(){
 			let o = [];
@@ -263,7 +267,9 @@ export default {
 	},
 	methods: {
 		sureDiscountModal(){
-			this.realDiscountPrice = amountFormat(twoFloat(this.discountPrice));
+			let _price = new BigNumber(this.discountPrice);
+
+			this.realDiscountPrice = _price.toFixed(2);
 			this.discountModalShow = false;
 		},
 		cancelDiscountChoose(){
@@ -273,9 +279,13 @@ export default {
 			this.discountNeddActive = true;
 			this.discount = val;
 			let p = 0;
-			p = this.allPrice*100 - this.allPrice * this.discount*100;
-			p = p/100;
-			this.discountPrice = amountFormat(twoFloat(p));
+
+			let _allPrice = new BigNumber(this.allPrice);
+			let _dPrice = _allPrice.multipliedBy(this.discount);
+
+			p = _allPrice.minus(_dPrice);
+
+			this.discountPrice = p.toFixed(2);
 			
 		},
 		async chooseType(type) {
@@ -451,16 +461,20 @@ export default {
 			this.modelData.phone = _t;
 		},
 		'discountPrice'(n,o){
-			let _p = (''+n).split('\.');
-			
-			if(_p.length > 1){
-				if(_p[1].length > 2){
-					_p[1] =_p[1].substr(0, 2);
-				}
-				this.discountPrice = _p[0]+'.'+_p[1];
-			}else{
-				this.discountPrice = n;
-			}
+			// let _p = (''+n).split('\.');
+			// let _real = 0;
+			// if(_p.length > 1){
+			// 	if(_p[1].length > 2){
+			// 		_p[1] =_p[1].substr(0, 2);
+			// 	}
+			// 	_real = _p[0]+'.'+_p[1];
+			// }else{   
+			// 	_real = Number(n);
+			// }
+			n = Number(n);
+			let _bigreal = new BigNumber(n);
+			 
+			this.discountPrice = _bigreal.isLessThan(this.allPrice) ? _bigreal.toFixed(2):this.allPrice;
 		}
 	}
 }

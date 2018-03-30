@@ -2,7 +2,7 @@
 * @Author: askMeWhy
 * @Date:   2018-03-29 11:02:55
 * @Last Modified by:   bigWave
-* @Last Modified time: 2018-03-29 15:52:46
+* @Last Modified time: 2018-03-30 15:57:11
 */
 
 @import '~@/styles/mixins', '~@/styles/variables';
@@ -269,8 +269,8 @@
 		line-height: 1;
 		border-radius: 4px;
 		min-width: auto;
-		width: auto;
-		padding: 8px 16px;
+		width: 60px;
+		padding: 8px 0;
 		color: map-get($color, 200);
 		background: map-get($color, 1002);
 		text-align: center;
