@@ -461,20 +461,27 @@ export default {
 			this.modelData.phone = _t;
 		},
 		'discountPrice'(n,o){
-			// let _p = (''+n).split('\.');
-			// let _real = 0;
-			// if(_p.length > 1){
-			// 	if(_p[1].length > 2){
-			// 		_p[1] =_p[1].substr(0, 2);
-			// 	}
-			// 	_real = _p[0]+'.'+_p[1];
-			// }else{   
-			// 	_real = Number(n);
-			// }
-			n = Number(n);
-			let _bigreal = new BigNumber(n);
-			 
-			this.discountPrice = _bigreal.isLessThan(this.allPrice) ? _bigreal.toFixed(2):this.allPrice;
+			let _real = Number(n);
+			let re = /^\d+(?=\.{0,1}\d+$|$)/;
+
+			if(!re.test(n) && n != ''){
+				this.discountPrice = '0.0';
+				return;
+			}
+			
+			let _bigreal = new BigNumber(_real);
+			if(!_bigreal.isLessThan(this.allPrice)){
+				this.discountPrice = this.allPrice;
+			}
+
+			let _p = (''+n).split('\.');
+
+			if(_p.length <= 1 && n.length >= 2 && n == 0){
+				this.discountPrice = '0';
+			}
+			if(_p.length > 1 && _p[1].length > 2){
+				this.discountPrice = _bigreal.toFixed(2);
+			}
 		}
 	}
 }

@@ -107,7 +107,7 @@
 	<div class="ask-view index" v-nav="$route.meta">
 		<div class="ask-view-box">
 			<div class="ms-full">
-				<ask-scroll class="noscroll">
+			<ask-scroll class="noscroll">
 					<header class="ms-header">
 						<div class="ms-hinfo">
 							<div class="ms-hbox">
