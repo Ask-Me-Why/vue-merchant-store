@@ -273,7 +273,6 @@ export default {
 						index['my_total'] = twoFloat(total);
 						_o.push(index);
 					})
-					console.log(_o)
 					this.orders = [...this.orders, ..._o];
 				}
 

@@ -221,13 +221,13 @@ export default {
 			let p = 0;
 			if(this.cartList.length > 0){
 				p = this.cartList.reduce((sum,val)=>{
-					return sum + val.count * Number(twoFloat(val.price));
+					return (sum*100 + val.count * val.price*100)/100;
 				},0);
 			}
 			return amountFormat(twoFloat(p));
 		},
 		needPayPrice(){
-			return amountFormat(twoFloat(this.allPrice - this.realDiscountPrice));
+			return amountFormat(twoFloat((this.allPrice*100 - this.realDiscountPrice*100)/100));
 		},
 		orderData(){
 			let o = [];
@@ -273,9 +273,10 @@ export default {
 			this.discountNeddActive = true;
 			this.discount = val;
 			let p = 0;
-			p = this.allPrice - this.allPrice * this.discount;
-
+			p = this.allPrice*100 - this.allPrice * this.discount*100;
+			p = p/100;
 			this.discountPrice = amountFormat(twoFloat(p));
+			
 		},
 		async chooseType(type) {
 			this.modelData =  {
@@ -392,7 +393,9 @@ export default {
 			let option = {};
 			option['order_code'] = this.member.order_code || "";
 			option['amount'] = this.needPayPrice;
-			option['discount'] = this.realDiscountPrice;
+			option['extra_data'] = {
+				'discount': this.realDiscountPrice
+			};
 			option['goods_list'] = this.cartList.reduce((sum,val)=>{
 				let cur = {
 					"goods_id": val.id,
