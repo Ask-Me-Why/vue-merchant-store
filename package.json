@@ -14,7 +14,6 @@
     "bignumber.js": "^6.0.0",
     "fastclick": "^1.0.6",
     "moment": "^2.20.1",
-    "numeral": "^2.0.6",
     "qs": "^6.5.1",
     "swiper": "^4.1.0",
     "vee-validate": "^2.0.3",

@@ -136,9 +136,9 @@ export default {
 					}).then(r=>{
 						this.$nextTick(()=>{
 							if (this.$route.query.redirect) {
-								this.$router.push({ path: this.$route.query.redirect })
+								this.$router.replace({ path: this.$route.query.redirect })
 							} else {
-								this.$router.push({ path: '/'});
+								this.$router.replace({ path: '/'});
 							}
 						});
 					},error=>{
