@@ -29,15 +29,11 @@ const nextDirection = (direction) => {
 router['_push'] = router['push'];
 router.askForward = router['push'] = (target) => {
 	nextDirection('forward')
-	setTimeout(() => {
-		router['_push'](target)
-	}, 0);
+	setTimeout(() => {router['_push'](target)}, 0);
 }
 router.askBack = (target) => {
 	nextDirection('back')
-	setTimeout(() => {
-		router['_push'](target)
-	}, 0);
+	setTimeout(() => {router['_push'](target)}, 0);
 }
 
 Vue.use(VeeValidate);

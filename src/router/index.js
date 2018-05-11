@@ -70,6 +70,7 @@ const beforeEach = (toRoute, fromRoute, next) => {
 	if(_to == "/clearing" && fromRoute.name == "order"){
 		nextDirection('back');
 		next({
+			replace: true,
 			path: '/'
 		});
 	}

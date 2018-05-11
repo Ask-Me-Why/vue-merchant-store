@@ -56,9 +56,9 @@
 </style>
 <template>
 	<div class="header-box" :class="{leave:cached}">
-		<div class="back" @click="onClick" :class="{hide: cached || !showBack}">
+		<!-- <div class="back" @click="onClick" :class="{hide: cached || !showBack}">
 			<i class="iconfont icon-fanhui"></i>
-		</div>
+		</div> -->
 		<div class="title">
 			<span>{{title || '导航栏'}}</span>
 		</div>
@@ -98,7 +98,6 @@ export default {
 		onClick(e) {
 			if (e.preventDefault) e.preventDefault();
 			else e.returnValue = false;
-
 			if (this.onBack) {
 				this.onBack();
 				return;
@@ -111,7 +110,7 @@ export default {
 			let main = document.getElementById('app');
 			if (main) main.setAttribute('transition-direction', 'back');
 
-			this.$router ? this.$router.back() : window.history.back();
+			this.$router ? this.$router.go(-1): window.history.go(-1);
 			return false;
 		},
 		titleEnter() {

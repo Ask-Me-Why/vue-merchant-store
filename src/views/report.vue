@@ -226,7 +226,7 @@
 					</div>
 				</template>
 				<div class="ms-rmgroup">
-					<div class="ms-rmouter">
+					<!-- <div class="ms-rmouter">
 						<div class="ms-rmcaption" @click="changeSlide(list.length)">
 							<div class="icon">
 								<div class="box">
@@ -263,7 +263,7 @@
 								</div>
 							</div>
 						</slide-sub>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
