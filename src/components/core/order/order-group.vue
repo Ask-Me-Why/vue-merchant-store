@@ -273,7 +273,7 @@ export default {
 						}
 						let _realTotal = new BigNumber(total);
 						
-						index['my_total'] = _realTotal.minus(index.yh).toFixed(2);
+						index['my_total'] = _realTotal.minus(index.yh || 0).toFixed(2);
 						
 						_o.push(index);
 					})
